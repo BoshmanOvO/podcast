@@ -2,9 +2,9 @@ import React from 'react';
 
 const RightSidebar = () => {
     return (
-        <div>
-            <p className={'right_sidebar'}>Right side bar</p>
-        </div>
+        <section className={'right_sidebar'}>
+            <p className={'right_sidebar text-white-1'}>Right side bar</p>
+        </section>
     );
 };
 
