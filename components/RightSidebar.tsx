@@ -3,7 +3,7 @@ import React from 'react';
 const RightSidebar = () => {
     return (
         <div>
-            <p className={'text-white-1'}>Right side bar</p>
+            <p className={'right_sidebar'}>Right side bar</p>
         </div>
     );
 };
