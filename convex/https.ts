@@ -1,9 +1,8 @@
 import type { WebhookEvent } from "@clerk/nextjs/server";
-import { httpRouter } from "convex/server";
 import { Webhook } from "svix";
-
 import { internal } from "./_generated/api";
 import { httpAction } from "./_generated/server";
+import {httpRouter} from "convex/server";
 
 const handleClerkWebhook = httpAction(async (ctx, request) => {
   const event = await validateRequest(request);
