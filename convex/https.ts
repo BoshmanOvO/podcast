@@ -1,28 +1,36 @@
+import type { WebhookEvent } from "@clerk/nextjs/server";
 import { httpRouter } from "convex/server";
-import { httpAction } from "./_generated/server";
-import { internal } from "./_generated/api";
-import type { WebhookEvent } from "@clerk/backend";
 import { Webhook } from "svix";
+
+import { internal } from "./_generated/api";
+import { httpAction } from "./_generated/server";
 
 const handleClerkWebhook = httpAction(async (ctx, request) => {
   const event = await validateRequest(request);
   if (!event) {
-    return new Response("Error occurred", {
-      status: 400,
-    });
+    return new Response("Invalid request", { status: 400 });
   }
   switch (event.type) {
     case "user.created":
-      console.log("user created", event.data.id);
       await ctx.runMutation(internal.users.createUser, {
-        clerkId: event.data.id,
-        email: event.data.email_addresses[0].email_address,
         name: event.data.first_name!,
+        email: event.data.email_addresses[0].email_address,
         imageURL: event.data.image_url,
+        clerkId: event.data.id,
       });
-        break;
+      break;
     case "user.updated":
+      await ctx.runMutation(internal.users.updateUser, {
+        email: event.data.email_addresses[0].email_address,
+        imageURL: event.data.image_url,
+        clerkId: event.data.id,
+      });
+      break;
     case "user.deleted":
+      await ctx.runMutation(internal.users.deleteUser, {
+        clerkId: event.data.id as string,
+      });
+      break;
   }
   return new Response(null, {
     status: 200,
@@ -30,6 +38,7 @@ const handleClerkWebhook = httpAction(async (ctx, request) => {
 });
 
 const http = httpRouter();
+
 http.route({
   path: "/clerk",
   method: "POST",
@@ -37,7 +46,7 @@ http.route({
 });
 
 const validateRequest = async (
-    req: Request
+  req: Request,
 ): Promise<WebhookEvent | undefined> => {
   const webhookSecret = process.env.CLERK_WEBHOOK_SECRET!;
   if (!webhookSecret) {
