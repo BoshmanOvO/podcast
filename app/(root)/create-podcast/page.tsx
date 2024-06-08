@@ -89,7 +89,7 @@ const CreatePodcast = () => {
                     Podcast Title
                   </FormLabel>
                   <FormControl
-                    className={"input-class focus-visible:ring-orange-1"}
+                    className={"input-class focus-visible:ring-offset-orange-1"}
                   >
                     <Input placeholder="Podcast Title" {...field} />
                   </FormControl>
@@ -104,7 +104,7 @@ const CreatePodcast = () => {
               <Select onValueChange={(value) => setVoiceType(value)}>
                 <SelectTrigger
                   className={cn(
-                    "mt-3 text-15 w-full border-none bg-black-1 text-gray-1 rounded-[5px]",
+                    "mt-3 text-15 w-full border-none bg-black-1 text-gray-1 rounded-[5px] focus-visible:ring-offset-orange-1",
                   )}
                 >
                   <SelectValue
@@ -114,7 +114,7 @@ const CreatePodcast = () => {
                 </SelectTrigger>
                 <SelectContent
                   className={
-                    "text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-orange-1 rounded-b-2xl"
+                    "text-16 border-none bg-black-1 font-bold text-white-1 rounded-b-2xl"
                   }
                 >
                   {voiceCategory.map((voice) => (
@@ -146,7 +146,9 @@ const CreatePodcast = () => {
                       Podcast Description
                     </FormLabel>
                     <FormControl
-                      className={"input-class focus-visible:ring-orange-1"}
+                      className={
+                        "input-class focus-visible:ring-offset-orange-1"
+                      }
                     >
                       <Textarea
                         placeholder="Write a short podcast discription"
@@ -160,7 +162,15 @@ const CreatePodcast = () => {
             </div>
           </div>
           <div>
-            <GeneratePodcast />
+            <GeneratePodcast
+              voiceType={voiceType}
+              setAudio={setAudioURL}
+              audio={audioURL}
+              setAudioStorageId={setAudioStorageId}
+              voicePrompt={voicePrompt}
+              setVoicePrompt={setVoicePrompt}
+              setAudioDuration={setAudioDuration}
+            />
             <GenerateThumbnail />
             <Button
               type={"submit"}
