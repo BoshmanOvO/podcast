@@ -5,17 +5,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
 
+const useGeneratePodcast = (props: GeneratePodcastProps) => {
+  return {
+    isGenerating: false,
+    generatePodcast: () => {},
+  };
+};
 
-const GeneratePodcast = ({
-  voiceType,
-  setAudio,
-  audio,
-  setAudioStorageId,
-  voicePrompt,
-  setVoicePrompt,
-  setAudioDuration,
-}: GeneratePodcastProps) => {
-  const [isGenerating, setIsGenerating] = useState(true);
+const GeneratePodcast = (props: GeneratePodcastProps) => {
+  const { isGenerating, generatePodcast } = useGeneratePodcast(props);
   return (
     <div>
       <div className={"flex flex-col gap-2.5"}>
@@ -24,8 +22,8 @@ const GeneratePodcast = ({
           placeholder={"Provide text to AI to generate audio"}
           className={"input-class focus-visible:ring-offset-orange-1"}
           rows={5}
-          value={voicePrompt}
-          onChange={(e) => setVoicePrompt(e.target.value)}
+          value={props.voicePrompt}
+          onChange={(e) => props.setVoicePrompt(e.target.value)}
         ></Textarea>
       </div>
       <div className={"mt-5 w-full max-w-[200px]"}>
@@ -43,13 +41,15 @@ const GeneratePodcast = ({
           )}
         </Button>
       </div>
-      {audio && (
+      {props.audio && (
         <audio
           controls
-          src={audio}
+          src={props.audio}
           autoPlay={true}
           className={"mt-5"}
-          onLoadedMetadata={(e) => setAudioDuration(e.currentTarget.duration)}
+          onLoadedMetadata={(e) =>
+            props.setAudioDuration(e.currentTarget.duration)
+          }
         />
       )}
     </div>
