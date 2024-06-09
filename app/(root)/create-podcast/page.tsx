@@ -78,7 +78,7 @@ const CreatePodcast = () => {
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
       setIsSubmitting(true);
-      if (!voiceType) {
+      if (!audioURL || !imageURL || !voiceType) {
         toast({
           title: "Please generate audio, image and select voice type",
           variant: "destructive",

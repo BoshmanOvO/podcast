@@ -23,7 +23,7 @@ const GenerateThumbnail = ({
 }: GenerateThumbnailProps) => {
   const [isAiThumbnail, setIsAiThumbnail] = useState(false);
 
-  const [isGenerating, setIsGenerating] = useState();
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const [isImageLoading, setIsImageLoading] = useState(false);
 
