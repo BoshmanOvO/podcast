@@ -61,7 +61,7 @@ const CreatePodcast = () => {
 
   const { toast } = useToast();
 
-  const createPodcast = useMutation(api.podcast.createPodcast);
+  const createPodcast = useMutation(api.podcasts.createPodcast);
 
   const useRoute = useRouter();
 

@@ -24,7 +24,7 @@ const useGeneratePodcast = ({
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
   const { startUpload } = useUploadFiles(generateUploadUrl);
 
-  const getAudioUrl = useMutation(api.podcast.getAudioUrl);
+  const getAudioUrl = useMutation(api.podcasts.getAudioUrl);
 
   const { toast } = useToast();
 
@@ -105,7 +105,7 @@ const GeneratePodcast = (props: GeneratePodcastProps) => {
           {isGenerating ? (
             <>
               Generating
-              <Loader size={24} className={"animate-spin ml-2"} />
+              <Loader size={20} className={"animate-spin ml-2"} />
             </>
           ) : (
             <>Generate</>
