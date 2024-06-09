@@ -2,6 +2,7 @@ import React from "react";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Image from "next/image";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function RootLayout({
   children,
@@ -19,8 +20,9 @@ export default function RootLayout({
                 height={30}
                 width={30}
               />
-              Mobile Nav
+              {/*<MobileNav />*/}
             </div>
+            <Toaster />
             <div>{children}</div>
           </div>
         </section>
