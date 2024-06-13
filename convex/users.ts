@@ -29,7 +29,7 @@ export const getTopUserByPodcastCount = query({
     const userData = await Promise.all(
       user.map(async (u) => {
         const podcasts = await ctx.db
-          .query("podcast")
+          .query("podcasts")
           .filter((q) => q.eq(q.field("authorId"), u.clerkId))
           .collect();
 
@@ -54,14 +54,14 @@ export const createUser = internalMutation({
   args: {
     clerkId: v.string(),
     email: v.string(),
-    imageURL: v.string(),
+    imageUrl: v.string(),
     name: v.string(),
   },
   async handler(ctx, args) {
     await ctx.db.insert("users", {
         clerkId: args.clerkId,
         email: args.email,
-        imageURL: args.imageURL,
+        imageUrl: args.imageUrl,
         name: args.name,
     });
   },
@@ -70,7 +70,7 @@ export const createUser = internalMutation({
 export const updateUser = internalMutation({
   args: {
     clerkId: v.string(),
-    imageURL: v.string(),
+    imageUrl: v.string(),
     email: v.string(),
   },
   async handler(ctx, args) {
@@ -84,19 +84,19 @@ export const updateUser = internalMutation({
     }
 
     await ctx.db.patch(user._id, {
-      imageURL: args.imageURL,
+      imageUrl: args.imageUrl,
       email: args.email,
     });
 
     const podcast = await ctx.db
-      .query("podcast")
+      .query("podcasts")
       .filter((q) => q.eq(q.field("authorId"), args.clerkId))
       .collect();
 
     await Promise.all(
       podcast.map(async (p) => {
         await ctx.db.patch(p._id, {
-          authorImageURL: args.imageURL,
+          authorImageUrl: args.imageUrl,
         });
       }),
     );

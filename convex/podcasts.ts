@@ -14,8 +14,8 @@ export const createPodcast = mutation({
   args: {
     podcastTitle: v.string(),
     podcastDescription: v.string(),
-    audioURL: v.string(),
-    imageURL: v.string(),
+    audioUrl: v.string(),
+    imageUrl: v.string(),
     voicePrompt: v.string(),
     imagePrompt: v.string(),
     voiceType: v.string(),
@@ -43,7 +43,7 @@ export const createPodcast = mutation({
       user: user[0]._id,
       author: user[0].name,
       authorId: user[0].clerkId,
-      authorImageURL: user[0].imageURL,
+      authorImageUrl: user[0].imageUrl,
     });
   },
 });

@@ -23,8 +23,6 @@ const GenerateThumbnail = ({
 }: GenerateThumbnailProps) => {
   const [isAiThumbnail, setIsAiThumbnail] = useState(false);
 
-  const [isGenerating, setIsGenerating] = useState(false);
-
   const [isImageLoading, setIsImageLoading] = useState(false);
 
   const imageRef = useRef<HTMLInputElement>(null);
@@ -138,7 +136,7 @@ const GenerateThumbnail = ({
               }
               onClick={generateImage}
             >
-              {isGenerating ? (
+              {isImageLoading ? (
                 <>
                   Generating
                   <Loader size={24} className={"animate-spin ml-2"} />
@@ -186,16 +184,16 @@ const GenerateThumbnail = ({
         </div>
       )}
       {image && (
-        <div className={"flex-center w-full"}>
-          <Image
-            src={image}
-            alt={"thumbnail"}
-            width={50}
-            height={50}
-            className={"mt-5"}
-          />
-        </div>
-      )}
+          <div className={"flex-center w-full"}>
+              <Image
+                  src={image}
+                  alt={"thumbnail"}
+                  width={250}
+                  height={250}
+                  className={"mt-5 img-fluid rounded"}
+              />
+          </div>
+        )}
     </>
   );
 };
