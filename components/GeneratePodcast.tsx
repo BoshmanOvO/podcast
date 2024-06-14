@@ -39,7 +39,7 @@ const useGeneratePodcast = ({
       return setIsGenerating(false);
     }
     try {
-      // we need to access podcast audio generation API
+      // we need to access podcasts audio generation API
       const response = await getPodcastAudio({
         voice: voiceType,
         input: voicePrompt,
@@ -66,7 +66,7 @@ const useGeneratePodcast = ({
       console.log(error);
 
       toast({
-        title: "Error generating podcast",
+        title: "Error generating podcasts",
         variant: "destructive",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });

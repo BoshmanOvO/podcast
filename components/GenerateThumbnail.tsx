@@ -184,16 +184,16 @@ const GenerateThumbnail = ({
         </div>
       )}
       {image && (
-          <div className={"flex-center w-full"}>
-              <Image
-                  src={image}
-                  alt={"thumbnail"}
-                  width={250}
-                  height={250}
-                  className={"mt-5 img-fluid rounded"}
-              />
-          </div>
-        )}
+        <div className={"flex-center w-full"}>
+          <Image
+            src={image}
+            alt={"thumbnail"}
+            width={250}
+            height={250}
+            className={"mt-5 img-fluid rounded"}
+          />
+        </div>
+      )}
     </>
   );
 };

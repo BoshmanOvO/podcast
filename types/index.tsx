@@ -114,14 +114,14 @@ export interface AudioContextType {
 }
 
 export interface PodcastCardProps {
-    imgUrl: string;
+    imageUrl: string;
     title: string;
     description: string;
-    podcastId: Id<"podcasts">;
+    podcastID: Id<"podcasts">;
 }
 
 export interface CarouselProps {
-    fansLikeDetail: TopPodcastersProps[];
+    fansLikeDetails: TopPodcastersProps[];
 }
 
 export interface ProfileCardProps {
