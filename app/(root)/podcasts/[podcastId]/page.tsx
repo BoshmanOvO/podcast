@@ -22,7 +22,7 @@ const PodcastDetails = ({
   });
 
   if (!similarPodcast || !podcast) {
-    return <LoaderSpinner />;
+    return <LoaderSpinner  classname={'flex'}/>;
   }
 
   const isOwner = user?.id == podcast?.authorId;

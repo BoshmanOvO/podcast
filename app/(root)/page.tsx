@@ -10,7 +10,7 @@ const Home = () => {
     <div className={"mt-9 flex flex-col gap-9"}>
       <section className={"flex flex-col gap-5"}>
         <h1 className={"text-4xl font-bold text-white-1"}>
-          Trending Podcast
+          Trending Podcasts
           <div className={"podcast_grid"}>
             {podcasts?.map(
               ({ _id, podcastTitle, podcastDescription, imageUrl }) => (

@@ -227,7 +227,7 @@ const CreatePodcast = () => {
             <Button
               type={"submit"}
               className={
-                "mt-9 text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1 rounded-[5px]"
+                "mb-5 mt-9 text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1 rounded-[5px]"
               }
             >
               {isSubmitting ? (

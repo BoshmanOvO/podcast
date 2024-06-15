@@ -18,7 +18,7 @@ const EmptyState = ({ title, search, buttonLink, buttonText }: EmptyStateProps) 
                   </p>
               )}
               {buttonLink && (
-                  <Button className={'bg-orange-1'}>
+                  <Button className={'bg-orange-1 mb-5'}>
                       <Link href={buttonLink} className={'gap-1 flex'}>
                           <Image src={'/icons/discover.svg'} alt={'discover'} height={20} width={20}/>
                           <h1 className={'text-16 font-extrabold text-white-1'}>

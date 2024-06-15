@@ -14,9 +14,13 @@ const RightSidebar = () => {
   const { user } = useUser();
   const topPodcasts = useQuery(api.users.getTopUserByPodcastCount);
   const router = useRouter();
-  if (!topPodcasts) {
-    return <LoaderSpinner />;
-  }
+  // if (!topPodcasts) {
+  //   return <LoaderSpinner classname={''} />;
+  // }
+
+  const getPodcastText = (numPodcasts: number) =>
+    numPodcasts === 1 ? "podcast" : "podcasts";
+
   return (
     <section className={"right_sidebar"}>
       <SignedIn>
@@ -62,9 +66,10 @@ const RightSidebar = () => {
                   {podcaster.name}
                 </h2>
               </figure>
-              <div className={'flex items-center'}>
-                <p className={'text-12 font-normal text-white-2'}>
-                  {podcaster.totalPodcasts} podcasts
+              <div className={"flex items-center"}>
+                <p className={"text-12 font-normal text-white-2"}>
+                  {podcaster.totalPodcasts}{" "}
+                  {getPodcastText(podcaster.totalPodcasts)}
                 </p>
               </div>
             </div>

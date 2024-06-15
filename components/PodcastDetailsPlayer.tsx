@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { api } from "@/convex/_generated/api";
-// import { useAudio } from "@/providers/AudioProvider";
+import { useAudio } from "@/providers/AudioProvider";
 import { PodcastDetailPlayerProps } from "@/types";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
@@ -24,7 +24,7 @@ const PodcastDetailPlayer = ({
   authorId,
 }: PodcastDetailPlayerProps) => {
   const router = useRouter();
-  // const { setAudio } = useAudio();
+  const { setAudio } = useAudio();
   const { toast } = useToast();
   const [isDeleting, setIsDeleting] = useState(false);
   const deletePodcast = useMutation(api.podcasts.deletePodcast);
@@ -55,7 +55,7 @@ const PodcastDetailPlayer = ({
     });
   };
 
-  if (!imageUrl || !authorImageUrl) return <LoaderSpinner />;
+  if (!imageUrl || !authorImageUrl) return <LoaderSpinner classname={'flex'}/>;
 
   return (
     <div className="mt-6 flex w-full justify-between max-md:justify-center">
