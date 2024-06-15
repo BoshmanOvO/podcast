@@ -19,9 +19,9 @@ export default defineSchema({
     audioDuration: v.number(),
     views: v.number(),
   })
-    .searchIndex("searchAuthor", { searchField: "author" })
-    .searchIndex("searchTitle", { searchField: "podcastTitle" })
-    .searchIndex("searchDescription", { searchField: "podcastDescription" }),
+    .searchIndex("search_author", { searchField: "author" })
+    .searchIndex("search_title", { searchField: "podcastTitle" })
+    .searchIndex("search_body", { searchField: "podcastDescription" }),
   users: defineTable({
     email: v.string(),
     imageUrl: v.string(),

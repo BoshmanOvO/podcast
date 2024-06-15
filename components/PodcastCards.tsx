@@ -19,7 +19,7 @@ const PodcastCards = ({
     <div className={"cursor-pointer"} onClick={handleViews}>
       <figure className={"flex flex-col gap-3"}>
         <Image
-          src={imageUrl}
+          src={imageUrl!}
           alt={title}
           width={170}
           height={170}

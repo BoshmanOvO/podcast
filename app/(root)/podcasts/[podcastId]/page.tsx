@@ -27,7 +27,7 @@ const PodcastDetails = ({
 
   const isOwner = user?.id == podcast?.authorId;
 
-  return (
+    return (
     <section className={"mt-5 flex flex-col w-full"}>
       <header className={"flex items-center justify-between"}>
         <h1 className={"text-white-1 text-20 font-bold"}>
