@@ -9,11 +9,9 @@ export const getUserById = query({
       .query("users")
       .filter((q) => q.eq(q.field("clerkId"), args.clerkId))
       .unique();
-
     if (!user) {
       throw new ConvexError("User not found");
     }
-
     return user;
   },
 });

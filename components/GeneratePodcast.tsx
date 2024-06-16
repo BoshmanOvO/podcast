@@ -32,9 +32,19 @@ const useGeneratePodcast = ({
     setIsGenerating(true);
     setAudio("");
     if (!voicePrompt) {
+      console.log("Please Provide Voice Prompt to Generate Audio");
       toast({
-        title: "Please Provide Voice Prompt to generate audio",
-        action: <ToastAction altText="Try again">Try again</ToastAction>,
+        title: "Please Provide Voice Prompt to Generate Audio",
+        action: (
+          <ToastAction
+            altText="Try again"
+            onClick={() => {
+              setIsGenerating(false);
+            }}
+          >
+            Try again
+          </ToastAction>
+        ),
       });
       return setIsGenerating(false);
     }
@@ -58,19 +68,16 @@ const useGeneratePodcast = ({
       const audioUrl = await getAudioUrl({ storageId });
       setAudio(audioUrl!);
       setIsGenerating(false);
-
       toast({
         title: "Podcast generated successfully",
       });
     } catch (error) {
       console.log(error);
-
       toast({
         title: "Error generating podcasts",
         variant: "destructive",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
-
       setIsGenerating(false);
     }
   };
@@ -94,7 +101,7 @@ const GeneratePodcast = (props: GeneratePodcastProps) => {
           rows={5}
           value={props.voicePrompt}
           onChange={(e) => props.setVoicePrompt(e.target.value)}
-        ></Textarea>
+        />
       </div>
       <div className={"mt-5 w-full max-w-[200px]"}>
         <Button
@@ -108,7 +115,7 @@ const GeneratePodcast = (props: GeneratePodcastProps) => {
               <Loader size={20} className={"animate-spin ml-2"} />
             </>
           ) : (
-            <>Generate</>
+            "Generate"
           )}
         </Button>
       </div>

@@ -22,7 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import GeneratePodcast from "@/components/GeneratePodcast";
 import GenerateThumbnail from "@/components/GenerateThumbnail";
@@ -32,14 +32,15 @@ import { VoiceType } from "@/types";
 import { useToast } from "@/components/ui/use-toast";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+import { ToastAction } from "@/components/ui/toast";
 
 const formSchema = z.object({
   podcastTitle: z.string().min(2),
   podcastDescription: z.string().min(2),
 });
 
-const voiceCategory = ['alloy', 'shimmer', 'nova', 'echo', 'fable', 'onyx'];
+const voiceCategory = ["alloy", "shimmer", "nova", "echo", "fable", "onyx"];
 
 const CreatePodcast = () => {
   const [imagePrompt, setImagePrompt] = useState("");
@@ -78,12 +79,13 @@ const CreatePodcast = () => {
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
       setIsSubmitting(true);
-      if (!audioUrl || !imageUrl || !voiceType) {
+      if (!voiceType || !audioUrl || !imageUrl) {
+        console.log("Please generate audio and image");
         toast({
-          title: "Please generate audio, image and select voice type",
+          title: "Please generate Audio and Image",
         });
         setIsSubmitting(false);
-        return new Error("Please generate audio, image and select voice type");
+        return new Error("Please generate Audio and Image");
       }
       const podcast = await createPodcast({
         podcastTitle: data.podcastTitle,
@@ -102,9 +104,8 @@ const CreatePodcast = () => {
         title: "Podcast created successfully",
       });
       setIsSubmitting(false);
-      router.push('/');
-    }
-    catch (error) {
+      router.push("/");
+    } catch (error) {
       toast({
         title: "Error submitting form",
         variant: "destructive",
@@ -113,7 +114,6 @@ const CreatePodcast = () => {
     }
     console.log(data);
   }
-
 
   return (
     <section className={"mt-10 flex flex-col"}>
@@ -227,7 +227,7 @@ const CreatePodcast = () => {
             <Button
               type={"submit"}
               className={
-                "mb-5 mt-9 text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1 rounded-[5px]"
+                "mt-10 text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1 rounded-[5px]"
               }
             >
               {isSubmitting ? (

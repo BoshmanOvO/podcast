@@ -13,6 +13,7 @@ import { useAction, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useUploadFiles } from "@xixixao/uploadstuff/react";
 import { v4 as uuidv4 } from "uuid";
+import { ToastAction } from "@/components/ui/toast";
 
 const GenerateThumbnail = ({
   setImage,
@@ -59,7 +60,27 @@ const GenerateThumbnail = ({
   };
 
   const handleGenerateThumbnail = useAction(api.openai.generateImageAction);
+
   const generateImage = async () => {
+    setIsAiThumbnail(true);
+    setImage("");
+    if (!imagePrompt) {
+      toast({
+        title:
+          "Please Provide Image Prompt to Generate Image or Try Custom Image",
+        action: (
+          <ToastAction
+            altText="Try again"
+            onClick={() => {
+              setIsAiThumbnail(true);
+            }}
+          >
+            Try again
+          </ToastAction>
+        ),
+      });
+      return setIsAiThumbnail(false);
+    }
     try {
       const response = await handleGenerateThumbnail({
         prompt: imagePrompt,

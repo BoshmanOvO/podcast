@@ -36,7 +36,7 @@ const Carousel = ({ fansLikeDetails }: CarouselProps) => {
     fansLikeDetails?.filter((item) => item.totalPodcasts > 0);
 
   if (!slides) {
-    return <LoaderSpinner classname={'w-full'}/>;
+    return <LoaderSpinner classname={""} />;
   }
 
   return (
