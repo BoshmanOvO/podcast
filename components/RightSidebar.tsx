@@ -59,7 +59,7 @@ const RightSidebar = () => {
       <section className={"flex flex-col gap-8 pt-10"}>
         <Header headerTitle={"Top Podcasters"} />
         <div className={"flex flex-col gap-6"}>
-          {topPodcasts?.slice(0, 4).map((podcaster) => (
+          {topPodcasts?.slice(0, 5).map((podcaster) => (
             <div
               key={podcaster._id}
               className={"flex cursor-pointer justify-between"}
